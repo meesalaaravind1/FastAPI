@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from typing import Optional
+from pydantic import BaseModel
 
 app= FastAPI()
 
@@ -52,3 +53,14 @@ def blog_Data(limit:int = 10,published:bool = False , sort: Optional[str] = None
 
 #27-03-2021 : ended at -   https://youtu.be/7t2alSnE2-I?t=3361
 
+#Now we are dealing with post methods
+
+#For post method we need to send the data in the response body. So we need to create a response object first and then return that a below:
+
+class Blog(BaseModel):
+    pass
+
+@app.post("/blog")
+def create_blog(request :Blog ):
+    return request
+    # return {'data':"blog created"}
